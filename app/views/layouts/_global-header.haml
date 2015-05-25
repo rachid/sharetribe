@@ -47,7 +47,9 @@
       If necessary, the buttons will overlap with the logo. Buttons should be on top, that's
       keep the logo here after buttons
     .header-left.header-logo-container
-      = link_to "/", :class => "header-logo", :id => "header-logo" do
+      - home_path = if @current_user then "/" else if params[:locale] != @current_community.default_locale.to_s then homepage_with_locale_path else "/" end end
+
+      = link_to home_path, :class => "header-logo", :id => "header-logo" do
         %i.header-wide-logo.visible-tablet
           -# Logo is here, it's a CSS background
         %i.header-square-logo.hidden-tablet
